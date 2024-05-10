@@ -12,16 +12,14 @@ filas = 0
 # Iterar sobre cada archivo en el directorio
 for filename in os.listdir(dir_csv):
     if filename.endswith('.csv'):
-        # print(filename)
+
         df = pd.read_csv(os.path.join(dir_csv, filename), sep=';', dtype=str)
         
         df = df.replace('', np.nan)  # Reemplazar las cadenas vacías con NaN
         df = df.dropna(how='all')  # Eliminar filas vacías
         
-        # df_final = df.replace('', np.nan)  # Reemplazar las cadenas vacías con NaN
-        # df_final = df_final.dropna(how='all')  # Eliminar filas vacías
-        
         print (filename, "cantidad filas: ", len(df))
+        
         filas += len(df)
         dfs.append(df)
 
@@ -35,4 +33,5 @@ df_final.to_csv('archivo_final.csv', index=False)
 
 print ("suma de filas de todos los arhivos: ", filas)
 print ("suma de filas del archivo final: ", len(df_final))
-input("Presione cualquier tecla para continuar...")
+print("se genero archivo archivo_final.csv con los datos concatenados ")
+input("Presione cualquier ENTER para continuar...")
